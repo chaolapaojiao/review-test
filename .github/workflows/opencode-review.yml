@@ -20,7 +20,7 @@ jobs:
           ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          model: ZhipuAI/glm-4.6
+          model: zhipuai-coding-plan/glm-4.6
           use_github_token: true
           prompt: |
             Review this pull request:
