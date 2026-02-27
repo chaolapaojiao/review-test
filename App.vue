@@ -4,6 +4,8 @@
 			console.log('App Launch')
 		},
 		onShow: function() {
+      a = b
+      c = a
 			console.log('App Show')
 		},
 		onHide: function() {
