@@ -6,6 +6,7 @@
 		onShow: function() {
       a = b
       c = a
+	  c = d
 			console.log('App Show')
 		},
 		onHide: function() {
