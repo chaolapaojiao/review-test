@@ -1,0 +1,100 @@
+name: AI Code Review
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+
+jobs:
+  ai-review:
+    # 当PR创建/更新或评论中包含/opencode或/oc时触发
+    if: |
+      github.event_name == 'pull_request' || 
+      contains(github.event.comment.body, '/opencode') || 
+      contains(github.event.comment.body, '/oc')
+    
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write
+      issues: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      
+      - name: Run OpenCode AI Review
+        uses: anomalyco/opencode/github@latest
+        env:
+          # 使用智谱AI API密钥，请在仓库的Secrets中添加 ZHIPUAI_API_KEY
+          ZHIPUAI_API_KEY: ${{ secrets.ZHIPUAI_API_KEY }}
+          # 如果使用其他提供商，请相应添加API密钥
+          # ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        with:
+          # 使用GLM4.6模型进行代码审查
+          model: zhipuai/glm-4.6
+          
+          # 自定义审查提示词，可根据项目需求修改
+          prompt: |
+            你是一个专业的代码审查助手，请对这个Pull Request进行全面的代码审查。请务必使用中文进行回复。
+            
+            审查重点关注以下方面：
+            
+            1. 代码质量与规范
+               - 代码风格是否符合项目规范
+               - 命名是否清晰易懂
+               - 代码结构是否合理
+            
+            2. 潜在的bug和安全问题
+               - 边界条件处理
+               - 异常处理机制
+               - 安全漏洞检查
+            
+            3. 性能优化建议
+               - 算法效率
+               - 资源使用优化
+               - 潜在的性能瓶颈
+            
+            4. 代码逻辑和架构改进
+               - 逻辑是否清晰
+               - 设计模式应用
+               - 模块耦合度
+            
+            5. 注释和文档完整性
+               - 关键逻辑是否有注释
+               - 函数/类文档是否完整
+               - API文档是否清晰
+            
+            审查结果请按以下格式输出：
+            
+            # 代码审查报告
+            
+            ## 🟢 优点
+            [列出代码中做得好的地方]
+            
+            ## 🔴 问题
+            [列出发现的问题，包括严重程度]
+            
+            ## 💡 改进建议
+            [提供具体的改进建议]
+            
+            ## 📝 总体评价
+            [对代码质量的总体评价]
+            
+            请确保所有输出内容都使用中文，并提供具体的代码示例和修改建议。
+            
+          # 可选：是否共享会话
+          # share: true
+          
+          # 可选：使用GITHUB_TOKEN而非OpenCode GitHub App
+          # use_github_token: true
+          
+          # 可选：自定义GitHub Token
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
