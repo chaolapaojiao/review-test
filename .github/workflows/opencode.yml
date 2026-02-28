@@ -31,3 +31,12 @@ jobs:
           DASHSCOPE_API_KEY: ${{ secrets.DASHSCOPE_API_KEY }}
         with:
           model: alibaba-cn/kimi-k2.5
+          请审查这个Pull Request，重点关注以下方面：
+            - 代码质量和可读性
+            - 潜在的bug或逻辑错误
+            - 性能问题
+            - 安全考虑
+            - 代码风格一致性
+            - 是否符合项目最佳实践
+            
+            请提供具体的改进建议，并在必要时指出需要修改的具体代码位置。
