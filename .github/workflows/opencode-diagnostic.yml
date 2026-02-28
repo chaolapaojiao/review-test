@@ -6,7 +6,7 @@ on:
       model_name:
         description: 'Model to test'
         required: false
-        default: 'zhipuai-coding-plan/glm-4.6'
+        default: 'bailian-coding-plan/glm-5'
         type: string
 
 jobs:

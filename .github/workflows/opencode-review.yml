@@ -31,7 +31,7 @@ jobs:
           DEBUG: true
           OPENCODE_LOG_LEVEL: debug
         with:
-          model: zhipuai-coding-plan/glm-4.6
+          model: bailian-coding-plan/glm-5
           prompt: |
             请审查这个Pull Request，重点关注以下方面：
             - 代码质量和可读性
