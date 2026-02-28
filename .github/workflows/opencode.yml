@@ -30,4 +30,4 @@ jobs:
         env:
           DASHSCOPE_API_KEY: ${{ secrets.DASHSCOPE_API_KEY }}
         with:
-          model: alibaba-cn/glm-5
+          model: alibaba-cn/kimi-k2.5
