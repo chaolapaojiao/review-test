@@ -1,4 +1,5 @@
 name: opencode-review
+
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
@@ -12,18 +13,32 @@ jobs:
       pull-requests: write
       issues: write
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout repository
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
-      - uses: anomalyco/opencode/github@latest
+
+      - name: Debug Model Information
+        run: |
+          echo "Using model: zhipuai-coding-plan/glm-4.6"
+          echo "Available environment variables:"
+          env | grep -E "(MODEL|ZHIPU|OPENCODE)" || echo "No relevant env vars found"
+          
+      - name: Run OpenCode for PR Review
+        uses: anomalyco/opencode/github@latest
         env:
           ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEBUG: true
+          OPENCODE_LOG_LEVEL: debug
         with:
           model: zhipuai-coding-plan/glm-4.6
-          use_github_token: true
           prompt: |
-            Review this pull request:
-            - Check for code quality issues
-            - Look for potential bugs
-            - Suggest improvements
+            请审查这个Pull Request，重点关注以下方面：
+            - 代码质量和可读性
+            - 潜在的bug或逻辑错误
+            - 性能问题
+            - 安全考虑
+            - 代码风格一致性
+            - 是否符合项目最佳实践
+            
+            请提供具体的改进建议，并在必要时指出需要修改的具体代码位置。
