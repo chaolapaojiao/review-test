@@ -6,7 +6,7 @@ on:
       model_name:
         description: 'Model to test'
         required: false
-        default: 'bailian-coding-plan/glm-5'
+        default: 'alibaba-cn/qwen3-coder-plus'
         type: string
 
 jobs:

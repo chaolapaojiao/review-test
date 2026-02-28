@@ -31,7 +31,7 @@ jobs:
           DEBUG: true
           OPENCODE_LOG_LEVEL: debug
         with:
-          model: bailian-coding-plan/glm-5
+          model: alibaba-cn/qwen3-coder-plus
           prompt: |
             请审查这个Pull Request，重点关注以下方面：
             - 代码质量和可读性
