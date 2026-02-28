@@ -30,7 +30,7 @@ jobs:
         env:
           DASHSCOPE_API_KEY: ${{ secrets.DASHSCOPE_API_KEY }}
         with:
-          model: alibaba-cn/kimi-k2.5
+          model: alibaba-cn/qwen3-coder-plus
           prompt: |
             请对这个代码进行全面审查，**只关注修改的代码部分**，按以下结构进行分析：
             
