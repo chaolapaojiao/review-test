@@ -32,4 +32,4 @@ jobs:
           DEBUG: true
           OPENCODE_LOG_LEVEL: debug
         with:
-          model: alibaba-cn/qwen3-coder-plus
+          model: bailian-coding-plan/qwen3-coder-plus
