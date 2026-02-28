@@ -6,6 +6,9 @@
 		onShow: function() {
       a = b
       c = a
+	  while(true){
+		console.log(111111)
+	  }
 			console.log('App Show')
 		},
 		onHide: function() {
