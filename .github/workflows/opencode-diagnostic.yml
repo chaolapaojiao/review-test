@@ -6,7 +6,7 @@ on:
       model_name:
         description: 'Model to test'
         required: false
-        default: 'alibaba-cn/qwen3-coder-plus'
+        default: 'alibaba-cn/kimi-k2.5'
         type: string
 
 jobs:
@@ -61,6 +61,6 @@ jobs:
           OPENCODE_LOG_LEVEL=debug opencode github run
         env:
           MODEL: ${{ inputs.model_name }}
-          ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
+          DASHSCOPE_API_KEY: ${{ secrets.DASHSCOPE_API_KEY }}
           DEBUG: true
           OPENCODE_LOG_LEVEL: debug
