@@ -1,24 +1,25 @@
 # GitHub Actions default permissions
 # https://docs.github.com/en/actions/security-guides/automatic-token-authentication
 
-# Set default permissions for all workflows
-defaults:
-  run:
-    # Set default shell
-    shell: bash
+# This file is disabled - permissions should be set in individual workflows
+# To use as a reusable workflow, uncomment the lines below and add proper jobs section
 
-# Set permissions for all workflows
-permissions:
-  actions: read
-  checks: write
-  contents: write
-  deployments: write
-  discussions: write
-  id-token: write
-  issues: write
-  packages: write
-  pages: write
-  pull-requests: write
-  repository-projects: write
-  security-events: write
-  statuses: write
+# defaults:
+#   run:
+#     # Set default shell
+#     shell: bash
+
+# permissions:
+#   actions: read
+#   checks: write
+#   contents: write
+#   deployments: write
+#   discussions: write
+#   id-token: write
+#   issues: write
+#   packages: write
+#   pages: write
+#   pull-requests: write
+#   repository-projects: write
+#   security-events: write
+#   statuses: write
