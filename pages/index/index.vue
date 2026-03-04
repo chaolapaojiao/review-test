@@ -2,7 +2,9 @@
 	<view class="content">
 		<image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
-			
+			<scroll-view scroll-x>
+				<view v-for="item in 10"></view>
+			</scroll-view>
 		</view>
 	</view>
 </template>
