@@ -23,6 +23,9 @@
 			while(c){
 				console.log(c)
 			}
+
+			const c = 1
+			c++
 		},
 		methods: {
 
