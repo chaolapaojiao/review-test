@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: read
+      contents: write
       pull-requests: write
       issues: write
     steps:
@@ -28,10 +28,12 @@ jobs:
         uses: anomalyco/opencode/github@latest
         env:
           DASHSCOPE_API_KEY: ${{ secrets.DASHSCOPE_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEBUG: true
           OPENCODE_LOG_LEVEL: debug
         with:
           model: alibaba-cn/qwen3-coder-plus
+          use_github_token: true
           prompt: |
             请对这个Pull Request进行全面审查，**只关注修改的代码部分**，按以下结构进行分析：
             
