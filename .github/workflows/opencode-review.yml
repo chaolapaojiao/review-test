@@ -23,26 +23,32 @@ jobs:
       pull-requests: write
       issues: write
     steps:
-      - name: Get PR head ref (manual trigger)
-        if: github.event_name == 'workflow_dispatch'
-        id: get-pr-head
+      - name: Fetch latest PR head (运行时获取，确保审查最新提交)
+        id: fetch-pr
         uses: actions/github-script@v7
         with:
           script: |
-            const prNumber = ${{ github.event.inputs.pr_number }};
+            const prNumber = context.payload.pull_request?.number || context.payload.inputs?.pr_number;
+            if (!prNumber) {
+              core.setFailed('无法获取 PR 编号');
+              return;
+            }
             const pr = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: prNumber
+              pull_number: Number(prNumber)
             });
-            core.setOutput('head_sha', pr.data.head.sha);
+            const headSha = pr.data.head.sha;
+            core.setOutput('head_sha', headSha);
+            console.log('审查 PR 最新提交:', headSha);
 
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.pull_request.head.sha || steps.get-pr-head.outputs.head_sha || github.sha }}
+          ref: ${{ steps.fetch-pr.outputs.head_sha }}
           fetch-depth: 0
-          persist-credentials: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
 
       - name: Run OpenCode for PR Review
         uses: anomalyco/opencode/github@latest
@@ -55,8 +61,9 @@ jobs:
           prompt: |
             # Code Review 审查规范
 
-            **本次审查的 PR 最新提交**：${{ github.event.pull_request.head.sha || steps.get-pr-head.outputs.head_sha }}
-            **重要**：若 PR 有新提交推送，本次为**重新审查**，必须基于上述最新提交的**完整 diff** 进行全新审查，不得复用或参考之前的审查结果。
+            **本次审查的 PR 最新提交**：${{ steps.fetch-pr.outputs.head_sha }}
+            **运行 ID**：${{ github.run_id }}
+            **重要**：本次必须基于上述最新提交的**完整 diff** 进行全新审查，不得复用或参考任何之前的审查结果。每次新提交后都会重新运行，你必须审查当前最新的代码变更。
 
             你是一名资深代码审查员。请**严格按照**以下格式对本次 PR 的**所有变更代码**进行审查，不得遗漏任何修改的文件或代码行。
             **重要**：每个问题必须在评论中附带**具体代码片段**（用 ``` 代码块包裹），修改建议必须提供**修改后的示例代码**。
