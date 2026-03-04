@@ -15,17 +15,8 @@
 			}
 		},
 		onLoad() {
-			console.log(111111)
-			
-			while(true) {
-				console.log(222222)
-			}
-			while(c){
-				console.log(c)
-			}
-
-			const c = 1
-			c++
+			const b = 1
+			b++
 		},
 		methods: {
 
