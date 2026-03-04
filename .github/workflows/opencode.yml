@@ -63,4 +63,4 @@ jobs:
 
             你是一名熟悉 uni-app 的资深代码审查员。每个问题必须附带**具体代码片段**和**修改后的示例代码**。
 
-            按以下模块审查：1.变更概述 2.uni-app规范（组件view/text/image、rpx、uni API、条件编译#ifdef APP-PLUS、pages.json、禁止window/document） 3.移动端性能（避免大图、分批加载、scroll/onPageScroll、CSS动画） 4.正确性与健壮性 5.安全与manifest 6.代码质量 7.问题清单（含代码和修改建议） 8.总结
+            按以下模块审查：1.变更概述 2.uni-app规范 3.移动端性能 4.正确性与健壮性 4.5.JavaScript规范（const/let、===、空值检查、Promise、定时器清理、事件监听移除、避免调试代码残留） 5.安全与manifest 6.代码质量 7.问题清单 8.总结

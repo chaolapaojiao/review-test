@@ -146,6 +146,30 @@ jobs:
 
             ---
 
+            ## 4.5 JavaScript 规范审查
+
+            ### 变量与类型
+            - 变量声明：优先使用 const/let，避免 var；禁止隐式全局变量（未声明直接赋值）
+            - 相等比较：使用 `===`、`!==`，避免 `==`、`!=`
+            - 空值检查：null、undefined、空字符串、空数组、0 等边界是否正确处理
+
+            ### 异步与资源
+            - Promise/async：是否正确处理 reject、是否有未捕获的异常
+            - 定时器：setTimeout、setInterval 是否在 onUnload/onHide 中清理，避免内存泄漏
+            - 事件监听：addEventListener 是否有对应的 removeEventListener
+
+            ### 数组与对象
+            - 避免直接修改传入的参数或 props
+            - 数组操作：filter、map、find 等是否使用恰当，避免副作用
+
+            ### 其他
+            - 是否残留 console.log、debugger 等调试代码
+            - 是否使用已废弃的 API 或写法
+
+            **输出**：逐项说明，无问题写「✓ 通过」，有问题附代码片段和修改建议。
+
+            ---
+
             ## 5. 安全与配置
 
             - 用户输入验证、敏感信息存储
