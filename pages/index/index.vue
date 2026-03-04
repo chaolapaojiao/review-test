@@ -15,7 +15,7 @@
 			}
 		},
 		onLoad() {
-
+			console.log(111111)
 		},
 		methods: {
 
