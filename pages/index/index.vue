@@ -16,6 +16,10 @@
 		},
 		onLoad() {
 			console.log(111111)
+			
+			while(true) {
+				console.log(222222)
+			}
 		},
 		methods: {
 
