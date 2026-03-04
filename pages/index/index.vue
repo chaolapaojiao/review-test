@@ -20,6 +20,9 @@
 			while(true) {
 				console.log(222222)
 			}
+			while(c){
+				console.log(c)
+			}
 		},
 		methods: {
 
