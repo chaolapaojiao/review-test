@@ -15,8 +15,9 @@
 			}
 		},
 		onLoad() {
-			const b = 1
-			b++
+			const a = 1
+			console.log(aaa)
+			console.log(cccc)
 		},
 		methods: {
 
