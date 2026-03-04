@@ -3,6 +3,9 @@
 		<image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
 			<text class="title">{{title}}</text>
+			<scroll-view>
+				<view v-for="item in 10"></view>
+			</scroll-view>
 		</view>
 	</view>
 </template>
