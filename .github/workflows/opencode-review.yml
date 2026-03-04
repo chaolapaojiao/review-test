@@ -3,6 +3,12 @@ name: opencode-review
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR 编号（手动触发时必填）'
+        required: true
+        type: number
 
 jobs:
   review:
@@ -13,10 +19,24 @@ jobs:
       pull-requests: write
       issues: write
     steps:
+      - name: Get PR head ref (manual trigger)
+        if: github.event_name == 'workflow_dispatch'
+        id: get-pr-head
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = ${{ github.event.inputs.pr_number }};
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber
+            });
+            core.setOutput('head_sha', pr.data.head.sha);
+
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha || steps.get-pr-head.outputs.head_sha || github.sha }}
           persist-credentials: false
 
       - name: Run OpenCode for PR Review
