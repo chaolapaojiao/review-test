@@ -15,7 +15,7 @@
 			}
 		},
 		onLoad() {
-
+			a = c
 		},
 		methods: {
 
