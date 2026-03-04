@@ -10,6 +10,10 @@
 			<scroll-view>
 				1111
 			</scroll-view>
+
+			<view>
+				{{ hhhhh }}
+			</view>
 		</view>
 	</view>
 </template>
