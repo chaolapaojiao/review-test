@@ -6,6 +6,10 @@
 			<scroll-view>
 				<view v-for="item in 10"></view>
 			</scroll-view>
+
+			<scroll-view>
+				1111
+			</scroll-view>
 		</view>
 	</view>
 </template>
