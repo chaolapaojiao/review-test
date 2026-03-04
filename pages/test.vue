@@ -1,5 +1,7 @@
 <template>
-    
+    <viwe>
+        
+    </viwe>
 </template>
 
 <script>
@@ -7,6 +9,11 @@
         data() {
             return {
                 title: 'Hello'
+            }
+        },
+        onLoad(options) {
+            while(true){
+                console.log(111111)
             }
         }
     }
