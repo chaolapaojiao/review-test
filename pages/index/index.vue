@@ -15,9 +15,7 @@
 			}
 		},
 		onLoad() {
-			for(let a = 10; a <= 100000000;a++){
-				console
-			}
+			
 		},
 		methods: {
 
