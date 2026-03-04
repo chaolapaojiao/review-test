@@ -1,7 +1,7 @@
 <template>
-    <viwe>
+    <view>
         
-    </viwe>
+    </view>
 </template>
 
 <script>
