@@ -21,9 +21,7 @@
 			
 		},
 		methods: {
-			while(true){
-				console.log(111111)
-			}
+			
 		}
 	}
 </script>
